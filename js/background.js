@@ -30,7 +30,6 @@ function update() {
   chrome.idle.queryState(IDLE_TIME, function(state) {
     
     if (state === "active") {
-      console.log("go track!");
       chrome.tabs.query({ "active": true, "lastFocusedWindow": true}, function(tabs) {
         if (tabs.length === 0) {
           console.log("no tabs active...");
@@ -38,9 +37,13 @@ function update() {
         }
         else {
           var tab = tabs[0];
-          var domain = extractDomain(tab.url);
-          updateLocal(domain);
-          console.log("You Spent " + apps[domain].sumTime + "seconds on " + domain );
+          chrome.windows.get(tab.windowId, function(currentWindow) {
+            if (currentWindow.focused == true) {
+              var domain = extractDomain(tab.url);
+              updateLocal(domain);
+              console.log("You Spent " + apps[domain].sumTime + "seconds on " + domain );
+            }
+          });
         }
       });
     }
