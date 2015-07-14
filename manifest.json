@@ -6,7 +6,7 @@
   "icons": { "16": "icon.png",
               "48": "icon.png" },
   "background": {
-    "scripts": ["background.js"]
+    "scripts": ["js/background.js"]
   },
   "permissions": [
     "idle",

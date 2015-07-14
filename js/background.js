@@ -1,14 +1,5 @@
 var UPDATE_INTERVAL = 3;//sec
 var IDLE_TIME = 30;//sec
-var sampleLocalApps = {
-  "www.facebook.com": {
-    timeSum: 180
-  },
-  "www.google.com": {
-    timeSum: 100
-  }
-};
-
 var apps;
 
 function updateLocal(domain) {
@@ -17,18 +8,18 @@ function updateLocal(domain) {
   var timeIncrement = UPDATE_INTERVAL;
   if (!apps[domain]) {
     console.log("going to create this domain: " + domain);
-    apps[domain] = { timeSum: timeIncrement }
+    apps[domain] = { sumTime: timeIncrement }
   }
   else {
-    apps[domain].timeSum += timeIncrement;
+    apps[domain].sumTime += timeIncrement;
   }
 
   localStorage.setItem('apps', JSON.stringify(apps));
 }
 
 function initial(callback) {
-  // localStorage.clear();
   if (!localStorage.getItem('apps')) {
+    console.log("no apps in local");
     localStorage.setItem('apps', JSON.stringify({}));
   }
   apps = JSON.parse(localStorage.getItem('apps'));
@@ -49,8 +40,7 @@ function update() {
           var tab = tabs[0];
           var domain = extractDomain(tab.url);
           updateLocal(domain);
-          console.log("You Spent " + apps[domain].timeSum + "seconds on " + domain );
-          updateView(domain, apps[domain].timeSum);
+          console.log("You Spent " + apps[domain].sumTime + "seconds on " + domain );
         }
       });
     }

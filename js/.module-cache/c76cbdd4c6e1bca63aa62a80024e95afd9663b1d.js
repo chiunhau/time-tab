@@ -1,4 +1,4 @@
-var Container = React.createClass({
+var Container = React.createClass({displayName: "Container",
 	loopOverApps: function(apps) {
 		var ary = [];
 		for (var key in apps) {
@@ -29,29 +29,29 @@ var Container = React.createClass({
   render: function() {
   	var domainNodes = this.state.apps_array.map(function(app) {
   		return (
-  			<DomainCard domain={app.domain} sumTime={app.sumTime} />
+  			React.createElement(DomainCard, {domain: app.domain, sumTime: app.sumTime})
   		)
   	}.bind(this));
   	return (
-			<div className="container">
-				<table>
-					{domainNodes}
-				</table>
-			</div>
+			React.createElement("div", {className: "container"}, 
+				React.createElement("table", null, 
+					domainNodes
+				)
+			)
   	);
   }
 });
 
-var DomainCard = React.createClass({
+var DomainCard = React.createClass({displayName: "DomainCard",
   render: function() {
   	return (
-			<tr className="domain-card">
-				<td>{this.props.domain}</td>
-				<td style={{textAlign: "right"}}>{this.props.sumTime}</td>
-				<td>sec.</td>
-			</tr>
+			React.createElement("tr", {className: "domain-card"}, 
+				React.createElement("td", null, this.props.domain), 
+				React.createElement("td", {style: "text-align: right"}, this.props.sumTime), 
+				React.createElement("td", null, "sec.")
+			)
   	);
   }
 });
 
-React.render(<Container />, document.getElementById("content"));
+React.render(React.createElement(Container, null), document.getElementById("content"));
