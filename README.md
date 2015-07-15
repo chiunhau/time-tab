@@ -1,7 +1,8 @@
-#Time Tracker 
+#Time Tracker Override Page versions
 這個chrome extension可以追蹤你在每個網站上花了多少時間
 
 ##Change Log
+- 0.0.3
 - 0.0.2 (15th July, latest) <br>Build simple data visualization interface with D3.js.
 - 0.0.1 (14th July) <br> Function of tracking browsing history and how much time spent on each site done.
 
