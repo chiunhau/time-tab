@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "Time Tracker",
+  "name": "FocusTab",
   "version": "0.0.3",
   "description": "Keep track of how you spend your time on the web.",
   "icons": { "16": "icon.png",
@@ -15,6 +15,6 @@
   "permissions": [
     "idle",
     "tabs"
-  ],
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+  ]
+  // "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }

@@ -2,3 +2,6 @@ body {
 	margin: 0;
 	background-color: steelblue;
 }
+a:link, a:visited, a:hover, a:active {
+	color: white;
+}
